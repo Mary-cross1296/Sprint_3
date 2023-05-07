@@ -91,4 +91,5 @@ def test_registration_with_invalid_password():
     time.sleep(2)
     driver.find_element(By.XPATH, ".//main/div/form/button[text()='Зарегистрироваться']").click()
     error_message = driver.find_element(By.XPATH, ".//form/fieldset[3]/div/p").text
+    driver.quit()
     assert error_message == "Некорректный пароль", "Успешная регистрация пользователя с паролем менее 6 символов"
