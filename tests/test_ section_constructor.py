@@ -8,9 +8,9 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 #Переход по клику на «Конструктор» из вкладки "Лента заказов" (без предварительной авторизации)
-def test_clicking_on_constructor_from_order_feed():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
+def test_clicking_on_constructor_from_order_feed(driver):
+    #driver = webdriver.Chrome()
+    #driver.get("https://stellarburgers.nomoreparties.site/")
 
     driver.find_element(By.XPATH, ".//header/nav/ul/li/a/p[text()='Лента Заказов']").click()
     time.sleep(2)
@@ -24,9 +24,9 @@ def test_clicking_on_constructor_from_order_feed():
 
 
 # Переход по клику на «Конструктор» из вкладки "Личный кабинет" (с предварительной авторизацией)
-def test_clicking_on_constructor_from_personal_account():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
+def test_clicking_on_constructor_from_personal_account(driver):
+    #driver = webdriver.Chrome()
+    #driver.get("https://stellarburgers.nomoreparties.site/")
 
     driver.find_element(By.XPATH, ".//nav/a/p[text()='Личный Кабинет']").click()
     WebDriverWait(driver,3).until(expected_conditions.visibility_of_element_located
@@ -48,9 +48,9 @@ def test_clicking_on_constructor_from_personal_account():
 
 
 #Переход по клику на логотип Stellar Burgers из вкладки "Личный кабинет" (с предварительной авторизацией)
-def test_click_on_stellar_burgers_logo():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
+def test_click_on_stellar_burgers_logo(driver):
+    #driver = webdriver.Chrome()
+    #driver.get("https://stellarburgers.nomoreparties.site/")
 
     driver.find_element(By.XPATH, ".//nav/a/p[text()='Личный Кабинет']").click()
     WebDriverWait(driver,3).until(expected_conditions.visibility_of_element_located
@@ -72,9 +72,9 @@ def test_click_on_stellar_burgers_logo():
 
 
 #Переход к разделу «Булки»
-def test_go_section_breads():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
+def test_go_section_breads(driver):
+    #driver = webdriver.Chrome()
+    #driver.get("https://stellarburgers.nomoreparties.site/")
 
     WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
         (By.XPATH, ".//header/nav/ul/li/a/p[text()='Конструктор']")))
@@ -92,9 +92,9 @@ def test_go_section_breads():
     driver.quit()
 
 #Переход к разделу «Соусы»
-def test_go_section_sauces():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
+def test_go_section_sauces(driver):
+    #driver = webdriver.Chrome()
+    #driver.get("https://stellarburgers.nomoreparties.site/")
 
     WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
         (By.XPATH, ".//header/nav/ul/li/a/p[text()='Конструктор']")))
@@ -109,9 +109,9 @@ def test_go_section_sauces():
     assert selected_sauces == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
 
 #Переход к разделу «Начинки»
-def test_go_section_fillings():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
+def test_go_section_fillings(driver):
+    #driver = webdriver.Chrome()
+    #driver.get("https://stellarburgers.nomoreparties.site/")
 
     WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
         (By.XPATH, ".//header/nav/ul/li/a/p[text()='Конструктор']")))

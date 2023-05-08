@@ -52,7 +52,7 @@ def test_registration_new_user():
     driver.find_element(By.XPATH, ".//main/div/form/fieldset[2]/div/div/input[@name='Пароль']").click()
     driver.find_element(By.XPATH, ".//main/div/form/fieldset[2]/div/div/input[@name='Пароль']").send_keys(rand_password)
     driver.find_element(By.XPATH, ".//main/div/form/button[text()='Войти']").click()
-    time.sleep(3)
+    time.sleep(4)
     current_url = driver.current_url
     driver.quit()
     assert current_url == "https://stellarburgers.nomoreparties.site/" , \
@@ -88,8 +88,8 @@ def test_registration_with_invalid_password():
     driver.find_element(By.XPATH, ".//fieldset[2]/div/div/input").send_keys(rand_email)
     driver.find_element(By.XPATH, ".//fieldset[3]/div/div/input").click()
     driver.find_element(By.XPATH, ".//fieldset[3]/div/div/input").send_keys(rand_password)
-    time.sleep(2)
     driver.find_element(By.XPATH, ".//main/div/form/button[text()='Зарегистрироваться']").click()
+    time.sleep(3)
     error_message = driver.find_element(By.XPATH, ".//form/fieldset[3]/div/p").text
     driver.quit()
     assert error_message == "Некорректный пароль", "Успешная регистрация пользователя с паролем менее 6 символов"

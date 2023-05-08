@@ -99,12 +99,13 @@ def test_sign_in_button_in_password_recovery_form():
     WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located
                                    ((By.XPATH, ".//form/fieldset[1]/div/div/label[text()='Email']")))
 
-    driver.find_element(By.XPATH, ".//main/div/div/p[text()='Забыли пароль?']/a[text()-'Восстановить пароль']").click()
+    driver.find_element(By.XPATH,
+                        ".//main/div/div/p[2][text()='Забыли пароль?']/a[text()='Восстановить пароль']").click()
     time.sleep(2)
     WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located
-                                   ((By.XPATH, ".//main/div/p/a[text()='Войти']")))
+                                   ((By.XPATH, ".//main/div/div/p/a[text()='Войти']")))
 
-    driver.find_element(By.XPATH, ".//main/div/p/a[text()='Войти']").click()
+    driver.find_element(By.XPATH, ".//main/div/div/p/a[text()='Войти']").click()
     time.sleep(2)
     WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located
                                    ((By.XPATH, ".//form/fieldset[1]/div/div/label[text()='Email']")))
