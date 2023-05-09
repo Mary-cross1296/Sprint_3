@@ -6,13 +6,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from locators import Locators
 
-def test_registration_new_user():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((By.LINK_TEXT, "Личный Кабинет")))
+def test_registration_new_user(driver):
+    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((*Locators.PERSONAL_ACCOUNT)))
 
-    driver.find_element(By.LINK_TEXT, "Личный Кабинет").click()
+    driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
     time.sleep(3)
 
     driver.find_element(By.CLASS_NAME, "Auth_link__1fOlj").click()

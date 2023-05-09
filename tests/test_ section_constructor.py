@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from locators import TestLocators
 
 #Переход по клику на «Конструктор» из вкладки "Лента заказов" (без предварительной авторизации)
 def test_clicking_on_constructor_from_order_feed(driver):
