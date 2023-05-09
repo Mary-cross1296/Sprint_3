@@ -8,30 +8,23 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators import TestLocators
 
-def test_sign_in_button_in_password_recovery_form(driver):
-    driver.find_element(*TestLocators.BUTTON_LOGIN_ACCOUNT).click()
-    time.sleep(2)
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
-
-    driver.find_element(*TestLocators.SIGN_RESTORE_PASSWORD).click()
-    time.sleep(2)
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located
-                                   ((TestLocators.SIGN_LOG_IN_RESTORE_PASSWORD)))
-
-    driver.find_element(*TestLocators.SIGN_LOG_IN_RESTORE_PASSWORD).click()
-    time.sleep(2)
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
-
-    driver.find_element(*TestLocators.EMAIL).click()
-    driver.find_element(*TestLocators.EMAIL).send_keys("mariapetrova091996@yandex.ru")
-    driver.find_element(*TestLocators.PASSWORD).click()
-    driver.find_element(*TestLocators.PASSWORD).send_keys("theory120396")
-    driver.find_element(*TestLocators.BUTTON_LOGIN).click()
-    time.sleep(2)
+def test_registration_with_invalid_password(driver, rand_name, rand_email, invalid_rand_password):
+    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.BUTTON_PERSONAL_ACCOUNT)))
 
     driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
-    time.sleep(2)
+    time.sleep(3)
 
-    email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute('value')
-    assert email == "mariapetrova091996@yandex.ru", "Не удалось войти в аккаунт"
+    driver.find_element(*TestLocators.SIGN_REGISTER).click()
+
+    #Регистрация нового пользователя
+    driver.find_element(*TestLocators.REG_NAME).click()
+    driver.find_element(*TestLocators.REG_NAME).send_keys(rand_name)
+    driver.find_element(*TestLocators.REG_EMAIL).click()
+    driver.find_element(*TestLocators.REG_EMAIL).send_keys(rand_email)
+    driver.find_element(*TestLocators.REG_PASSWORD).click()
+    driver.find_element(*TestLocators.REG_PASSWORD).send_keys(invalid_rand_password)
+    driver.find_element(*TestLocators.REG_BUTTON_REGISTER).click()
+    time.sleep(3)
+    error_message = driver.find_element(*TestLocators.REG_ERROR_MESSAGE).text
     driver.quit()
+    assert error_message == "Некорректный пароль", "Успешная регистрация пользователя с паролем менее 6 символов"

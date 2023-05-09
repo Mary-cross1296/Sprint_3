@@ -6,89 +6,66 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from locators import Locators
+from locators import TestLocators
 
-def test_registration_new_user(driver):
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((*Locators.PERSONAL_ACCOUNT)))
+def test_registration_new_user(driver, rand_email, rand_password, rand_name):
+    time.sleep(3)
+    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.BUTTON_PERSONAL_ACCOUNT)))
 
-    driver.find_element(*Locators.PERSONAL_ACCOUNT).click()
+    driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
     time.sleep(3)
 
-    driver.find_element(By.CLASS_NAME, "Auth_link__1fOlj").click()
-
-    #Генерация рандомных значений
-    #Email и имя пользователя
-    letters_and_digits = string.ascii_letters + string.digits
-    length = random.randint(3,10)
-    rand_name = ''.join(random.sample(letters_and_digits, length)) #Переменная используется также для поля "Имя"
-    rand_domain = ''.join(random.sample(letters_and_digits, length))
-    rand_email = rand_name + "@" + rand_domain + "." + str(random.choice(['net', 'com', 'ua', 'ru', 'org']))
-
-    #Генерация пароля
-    length_password = random.randint(6, 15)
-    rand_password = ''.join(random.sample(letters_and_digits, length_password))
+    driver.find_element(*TestLocators.SIGN_REGISTER).click()
+    time.sleep(3)
 
     #Регистрация нового пользователя
-    driver.find_element(By.XPATH, ".//fieldset[1]/div/div/input").click()
-    driver.find_element(By.XPATH, ".//fieldset[1]/div/div/input").send_keys(rand_name)
-    driver.find_element(By.XPATH, ".//fieldset[2]/div/div/input").click()
-    driver.find_element(By.XPATH, ".//fieldset[2]/div/div/input").send_keys(rand_email)
-    driver.find_element(By.XPATH, ".//fieldset[3]/div/div/input").click()
-    driver.find_element(By.XPATH, ".//fieldset[3]/div/div/input").send_keys(rand_password)
+    driver.find_element(*TestLocators.REG_NAME).click()
+    driver.find_element(*TestLocators.REG_NAME).send_keys(rand_name)
+    driver.find_element(*TestLocators.REG_EMAIL).click()
+    driver.find_element(*TestLocators.REG_EMAIL).send_keys(rand_email)
+    driver.find_element(*TestLocators.REG_PASSWORD).click()
+    driver.find_element(*TestLocators.REG_PASSWORD).send_keys(rand_password)
     time.sleep(2)
-    driver.find_element(By.XPATH, ".//main/div/form/button[text()='Зарегистрироваться']").click()
+    driver.find_element(*TestLocators.REG_BUTTON_REGISTER).click()
     time.sleep(2)
     current_url = driver.current_url
     assert current_url == "https://stellarburgers.nomoreparties.site/login", "Новый пользователь не зарегистрирован"
 
     #Вход с даннымы вновь зарегистрированного пользователя
     time.sleep(2)
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located
-                                   ((By.XPATH, ".//main/div/h2[text()='Вход']")))
+    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.TITLE_LOGIN)))
 
-    driver.find_element(By.XPATH, ".//main/div/form/fieldset[1]/div/div/input[@name='name']").click()
-    driver.find_element(By.XPATH, ".//main/div/form/fieldset[1]/div/div/input[@name='name']").send_keys(rand_email)
-    driver.find_element(By.XPATH, ".//main/div/form/fieldset[2]/div/div/input[@name='Пароль']").click()
-    driver.find_element(By.XPATH, ".//main/div/form/fieldset[2]/div/div/input[@name='Пароль']").send_keys(rand_password)
-    driver.find_element(By.XPATH, ".//main/div/form/button[text()='Войти']").click()
-    time.sleep(4)
-    current_url = driver.current_url
+    driver.find_element(*TestLocators.EMAIL).click()
+    driver.find_element(*TestLocators.EMAIL).send_keys(rand_email)
+    driver.find_element(*TestLocators.PASSWORD).click()
+    driver.find_element(*TestLocators.PASSWORD).send_keys(rand_password)
+    driver.find_element(*TestLocators.BUTTON_LOGIN).click()
+    time.sleep(2)
+
+    driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
+    time.sleep(3)
+    new_email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute("value")
+    assert new_email == str.lower(rand_email)
     driver.quit()
-    assert current_url == "https://stellarburgers.nomoreparties.site/" , \
-        "Не удалось осуществить вход с данными нового пользователя"
 
 
-def test_registration_with_invalid_password():
-    driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.nomoreparties.site/")
-    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((By.LINK_TEXT, "Личный Кабинет")))
+def test_registration_with_invalid_password(driver, rand_name, rand_email, invalid_rand_password):
+    WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.BUTTON_PERSONAL_ACCOUNT)))
 
-    driver.find_element(By.LINK_TEXT, "Личный Кабинет").click()
+    driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
     time.sleep(3)
 
-    driver.find_element(By.CLASS_NAME, "Auth_link__1fOlj").click()
-
-    #Генерация рандомных значений
-    #Email и имя пользователя
-    letters_and_digits = string.ascii_letters + string.digits
-    length = random.randint(3,10)
-    rand_name = ''.join(random.sample(letters_and_digits, length)) #Переменная используется также для поля "Имя"
-    rand_domain = ''.join(random.sample(letters_and_digits, length))
-    rand_email = rand_name + "@" + rand_domain + "." + str(random.choice(['net', 'com', 'ua', 'ru', 'org']))
-
-    #Генерация пароля
-    length_password = random.randint(0, 6)
-    rand_password = ''.join(random.sample(letters_and_digits, length_password))
+    driver.find_element(*TestLocators.SIGN_REGISTER).click()
 
     #Регистрация нового пользователя
-    driver.find_element(By.XPATH, ".//fieldset[1]/div/div/input").click()
-    driver.find_element(By.XPATH, ".//fieldset[1]/div/div/input").send_keys(rand_name)
-    driver.find_element(By.XPATH, ".//fieldset[2]/div/div/input").click()
-    driver.find_element(By.XPATH, ".//fieldset[2]/div/div/input").send_keys(rand_email)
-    driver.find_element(By.XPATH, ".//fieldset[3]/div/div/input").click()
-    driver.find_element(By.XPATH, ".//fieldset[3]/div/div/input").send_keys(rand_password)
-    driver.find_element(By.XPATH, ".//main/div/form/button[text()='Зарегистрироваться']").click()
+    driver.find_element(*TestLocators.REG_NAME).click()
+    driver.find_element(*TestLocators.REG_NAME).send_keys(rand_name)
+    driver.find_element(*TestLocators.REG_EMAIL).click()
+    driver.find_element(*TestLocators.REG_EMAIL).send_keys(rand_email)
+    driver.find_element(*TestLocators.REG_PASSWORD).click()
+    driver.find_element(*TestLocators.REG_PASSWORD).send_keys(invalid_rand_password)
+    driver.find_element(*TestLocators.REG_BUTTON_REGISTER).click()
     time.sleep(3)
-    error_message = driver.find_element(By.XPATH, ".//form/fieldset[3]/div/p").text
+    error_message = driver.find_element(*TestLocators.REG_ERROR_MESSAGE).text
     driver.quit()
     assert error_message == "Некорректный пароль", "Успешная регистрация пользователя с паролем менее 6 символов"
