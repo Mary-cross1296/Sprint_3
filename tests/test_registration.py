@@ -67,5 +67,5 @@ def test_registration_with_invalid_password(driver, rand_name, rand_email, inval
     driver.find_element(*TestLocators.REG_BUTTON_REGISTER).click()
     time.sleep(3)
     error_message = driver.find_element(*TestLocators.REG_ERROR_MESSAGE).text
-    driver.quit()
     assert error_message == "Некорректный пароль", "Успешная регистрация пользователя с паролем менее 6 символов"
+    driver.quit()

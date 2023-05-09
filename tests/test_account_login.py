@@ -40,8 +40,8 @@ def test_sign_in_button_personal_account(driver):
     driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
     time.sleep(2)
     email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute('value')
-    driver.quit()
     assert email == "mariapetrova091996@yandex.ru", "Не удалось войти в аккаунт"
+    driver.quit()
 
 
 #Вход через кнопку в форме регистрации
@@ -69,8 +69,8 @@ def test_sign_in_button_in_registration_form(driver):
     time.sleep(2)
 
     email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute('value')
-    driver.quit()
     assert email == "mariapetrova091996@yandex.ru", "Не удалось войти в аккаунт"
+    driver.quit()
 
 
 
