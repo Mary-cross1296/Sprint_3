@@ -8,6 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 def driver():
     get_driver = webdriver.Chrome()
     get_driver.get("https://stellarburgers.nomoreparties.site/")
+
     return get_driver
 
 

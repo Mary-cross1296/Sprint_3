@@ -10,7 +10,7 @@ from locators import TestLocators
 
 #Выход по кнопке «Выйти» в личном кабинете
 def test_sign_out_button_personal_account(driver):
-    driver.find_element(*TestLocators.PERSONAL_ACCOUNT).click()
+    driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
     time.sleep(2)
 
     WebDriverWait(driver,3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
@@ -20,7 +20,7 @@ def test_sign_out_button_personal_account(driver):
     driver.find_element(*TestLocators.PASSWORD).send_keys("theory120396")
     driver.find_element(*TestLocators.BUTTON_LOGIN).click()
     time.sleep(2)
-    driver.find_element(*TestLocators.PERSONAL_ACCOUNT).click()
+    driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
     time.sleep(2)
     email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute('value')
     assert email == "mariapetrova091996@yandex.ru", "Не удалось войти в аккаунт"
