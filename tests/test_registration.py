@@ -46,7 +46,6 @@ def test_registration_new_user(driver, rand_email, rand_password, rand_name):
     time.sleep(3)
     new_email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute("value")
     assert new_email == str.lower(rand_email)
-    driver.quit()
 
 
 def test_registration_with_invalid_password(driver, rand_name, rand_email, invalid_rand_password):
@@ -68,4 +67,3 @@ def test_registration_with_invalid_password(driver, rand_name, rand_email, inval
     time.sleep(3)
     error_message = driver.find_element(*TestLocators.REG_ERROR_MESSAGE).text
     assert error_message == "Некорректный пароль", "Успешная регистрация пользователя с паролем менее 6 символов"
-    driver.quit()

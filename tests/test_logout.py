@@ -31,4 +31,3 @@ def test_sign_out_button_personal_account(driver):
     WebDriverWait(driver,3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
     text_login = driver.find_element(*TestLocators.TITLE_LOGIN).text
     assert text_login == "Вход"
-    driver.quit()

@@ -20,7 +20,6 @@ def test_clicking_on_constructor_from_order_feed(driver):
 
     header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
     assert header == "Соберите бургер", "Не удалось выполнить переход с вкладки 'Лента заказов' на вкладку 'Конструктор'"
-    driver.quit()
 
 
 # Переход по клику на «Конструктор» из вкладки "Личный кабинет" (с предварительной авторизацией)
@@ -41,7 +40,6 @@ def test_clicking_on_constructor_from_personal_account(driver):
 
     header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
     assert header == "Соберите бургер", "Не удалось выполнить переход с вкладки 'Личный кабинет' на вкладку 'Конструктор'"
-    driver.quit()
 
 
 #Переход по клику на логотип Stellar Burgers из вкладки "Личный кабинет" (с предварительной авторизацией)
@@ -80,7 +78,6 @@ def test_go_section_breads(driver):
         get_attribute('class')
     time.sleep(1)
     assert selected_breads == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
-    driver.quit()
 
 
 #Переход к разделу «Соусы»
@@ -95,7 +92,6 @@ def test_go_section_sauces(driver):
     time.sleep(1)
     selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[2]").get_attribute("class")
     assert selected_sauces == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
-    driver.quit()
 
 
 #Переход к разделу «Начинки»
@@ -110,5 +106,3 @@ def test_go_section_fillings(driver):
     time.sleep(1)
     selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[3]").get_attribute("class")
     assert selected_sauces == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
-    driver.quit()
-

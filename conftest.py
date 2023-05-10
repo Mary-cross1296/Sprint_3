@@ -10,8 +10,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 def driver():
     get_driver = webdriver.Chrome()
     get_driver.get("https://stellarburgers.nomoreparties.site/")
+    yield get_driver
+    get_driver.quit()
 
-    return get_driver
 
 @pytest.fixture()
 def rand_name():
