@@ -41,6 +41,3 @@ class TestLocators:
     #Личный кабинет
     PERSONAL_ACCOUNT_EMAIL = By.XPATH, ".//li[2]/div/div/input" #Поле Email
     PERSONAL_ACCOUNT_BUTTON_LOGOUT = By.XPATH, ".//main/div/nav/ul/li/button[text()='Выход']" #Кнопка "Выход"
-
-
-
