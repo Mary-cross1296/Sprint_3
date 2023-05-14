@@ -18,8 +18,8 @@ class TestLocators:
 
     #Регистрация
     SIGN_LOG_IN = By.XPATH, ".//main/div/div/p/a[text()='Войти']" #Надпись "Войти"
-    REG_NAME = By.XPATH, ".//fieldset[1]/div/div/input" #Поле "Имя"
-    REG_EMAIL = By.XPATH, ".//fieldset[2]/div/div/input" #Поле "Email"
+    REG_NAME = By.XPATH, ".//fieldset[1]/div/div/label[text() = 'Имя']/following::input" #Поле "Имя"
+    REG_EMAIL = By.XPATH, ".//fieldset[2]/div/div/label[text() = 'Email']/following::input" #Поле "Email"
     REG_PASSWORD = By.XPATH, ".//fieldset[3]/div/div/input" #Поле "Password"
     REG_BUTTON_REGISTER = By.XPATH, ".//main/div/form/button[text()='Зарегистрироваться']" #Кнопка "Зарегистрироваться"
     REG_ERROR_MESSAGE = By.XPATH, ".//form/fieldset[3]/div/p" #Сообщение о "Неправильном пароле"
