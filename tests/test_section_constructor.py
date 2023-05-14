@@ -21,7 +21,6 @@ class TestSectionConstructor:
         header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
         assert header == "Соберите бургер", "Не удалось выполнить переход с вкладки 'Лента заказов' на вкладку 'Конструктор'"
 
-    # Переход по клику на «Конструктор» из вкладки "Личный кабинет" (с предварительной авторизацией)
     def test_clicking_on_constructor_from_personal_account(self, driver):
         driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
         WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
@@ -40,7 +39,6 @@ class TestSectionConstructor:
         header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
         assert header == "Соберите бургер", "Не удалось выполнить переход с вкладки 'Личный кабинет' на вкладку 'Конструктор'"
 
-    # Переход по клику на логотип Stellar Burgers из вкладки "Личный кабинет" (с предварительной авторизацией)
     def test_click_on_stellar_burgers_logo(self, driver):
         driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
         WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
@@ -62,7 +60,6 @@ class TestSectionConstructor:
         assert header == "Соберите бургер", "Не удалось выполнить переход в 'Конструктор' по клику на Лого"
         driver.quit()
 
-    # Переход к разделу «Булки»
     def test_go_section_breads(self, driver):
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
@@ -78,7 +75,6 @@ class TestSectionConstructor:
         time.sleep(1)
         assert selected_breads == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
 
-    # Переход к разделу «Соусы»
     def test_go_section_sauces(self, driver):
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
@@ -92,7 +88,6 @@ class TestSectionConstructor:
         selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[2]").get_attribute("class")
         assert selected_sauces == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
 
-    # Переход к разделу «Начинки»
     def test_go_section_fillings(self, driver):
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))

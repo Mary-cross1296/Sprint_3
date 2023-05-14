@@ -37,7 +37,6 @@ class TestRegistration:
         current_url = driver.current_url
         assert current_url == "https://stellarburgers.nomoreparties.site/login", "Новый пользователь не зарегистрирован"
 
-        # Вход с даннымы вновь зарегистрированного пользователя
         time.sleep(2)
         WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.TITLE_LOGIN)))
 
@@ -59,7 +58,6 @@ class TestRegistration:
         driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
         driver.find_element(*TestLocators.SIGN_REGISTER).click()
 
-        # Регистрация нового пользователя
         driver.find_element(*TestLocators.REG_NAME).click()
         driver.find_element(*TestLocators.REG_NAME).send_keys(fake.name())
         driver.find_element(*TestLocators.REG_EMAIL).click()

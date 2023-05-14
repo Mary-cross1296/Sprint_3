@@ -24,7 +24,6 @@ class TestAccountLogin:
         email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute('value')
         assert email == "mariapetrova091996@yandex.ru", "Не удалось войти в аккаунт"
 
-    # Вход через кнопку «Личный кабинет»
     def test_sign_in_button_personal_account(self, driver):
         driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
         WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.LABEL_EMAIL)))
@@ -39,7 +38,6 @@ class TestAccountLogin:
         email = driver.find_element(*TestLocators.PERSONAL_ACCOUNT_EMAIL).get_attribute('value')
         assert email == "mariapetrova091996@yandex.ru", "Не удалось войти в аккаунт"
 
-    # Вход через кнопку в форме регистрации
     def test_sign_in_button_in_registration_form(self, driver):
         driver.find_element(*TestLocators.BUTTON_LOGIN_ACCOUNT).click()
         time.sleep(2)
