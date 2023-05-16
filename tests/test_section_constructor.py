@@ -11,13 +11,9 @@ from locators import TestLocators
 class TestSectionConstructor:
     def test_clicking_on_constructor_from_order_feed(self, driver):
         driver.find_element(*TestLocators.BUTTON_ORDER_TAPE).click()
-        time.sleep(2)
-
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_ORDER_TAPE)))
         driver.find_element(*TestLocators.BUTTON_CONSTRUCTOR).click()
-        time.sleep(2)
-
         header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
         assert header == "Соберите бургер", "Не удалось выполнить переход с вкладки 'Лента заказов' на вкладку 'Конструктор'"
 
@@ -29,13 +25,8 @@ class TestSectionConstructor:
         driver.find_element(*TestLocators.PASSWORD).click()
         driver.find_element(*TestLocators.PASSWORD).send_keys("theory120396")
         driver.find_element(*TestLocators.BUTTON_LOGIN).click()
-        time.sleep(2)
         driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
-        time.sleep(2)
-
         driver.find_element(*TestLocators.BUTTON_CONSTRUCTOR).click()
-        time.sleep(2)
-
         header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
         assert header == "Соберите бургер", "Не удалось выполнить переход с вкладки 'Личный кабинет' на вкладку 'Конструктор'"
 
@@ -47,56 +38,42 @@ class TestSectionConstructor:
         driver.find_element(*TestLocators.PASSWORD).click()
         driver.find_element(*TestLocators.PASSWORD).send_keys("theory120396")
         driver.find_element(*TestLocators.BUTTON_LOGIN).click()
-        time.sleep(2)
-
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.TITLE_COLLECT_BURGER)))
         driver.find_element(*TestLocators.BUTTON_PERSONAL_ACCOUNT).click()
-        time.sleep(2)
-
         driver.find_element(*TestLocators.LOGO_STELLAR_BURGER).click()
-        time.sleep(2)
         header = driver.find_element(*TestLocators.TITLE_COLLECT_BURGER).text
         assert header == "Соберите бургер", "Не удалось выполнить переход в 'Конструктор' по клику на Лого"
-        driver.quit()
 
     def test_go_section_breads(self, driver):
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
         driver.find_element(*TestLocators.TAB_FILLINGS).click()
-        time.sleep(1)
         no_selected_breads = driver.find_element(*TestLocators.TAB_BREADS_SELECTED_OR_NO_SELECTED).get_attribute(
             'class')
         assert 'tab_tab_type_current__2BEPc' not in no_selected_breads, "Вкладка булки не доступна для клика"
 
         driver.find_element(*TestLocators.TAB_BREADS).click()
-        time.sleep(1)
         selected_breads = driver.find_element(*TestLocators.TAB_BREADS_SELECTED_OR_NO_SELECTED).get_attribute('class')
-        time.sleep(1)
         assert 'tab_tab_type_current__2BEPc' in selected_breads
 
     def test_go_section_sauces(self, driver):
-        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
-        no_selected_sauces = driver.find_element(*TestLocators.TAB_SAUCES_SELECTED_OR_NO_SELECTED).get_attribute('class')
-
-        time.sleep(1)
+        WebDriverWait(driver, 3).until(
+            expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
+        no_selected_sauces = driver.find_element(*TestLocators.TAB_SAUCES_SELECTED_OR_NO_SELECTED).get_attribute(
+            'class')
         assert 'tab_tab_type_current__2BEPc' not in no_selected_sauces
-
         driver.find_element(*TestLocators.TAB_SAUCES).click()
-        time.sleep(1)
         selected_sauces = driver.find_element(*TestLocators.TAB_SAUCES_SELECTED_OR_NO_SELECTED).get_attribute("class")
         assert 'tab_tab_type_current__2BEPc' in selected_sauces
 
     def test_go_section_fillings(self, driver):
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
-        no_selected_fillings = driver.find_element(*TestLocators.TAB_FILLINGS_SELECTED_OR_NO_SELECTED).get_attribute('class')
-        time.sleep(1)
+        no_selected_fillings = driver.find_element(*TestLocators.TAB_FILLINGS_SELECTED_OR_NO_SELECTED).get_attribute(
+            'class')
         assert 'tab_tab_type_current__2BEPc' not in no_selected_fillings
-
         driver.find_element(*TestLocators.TAB_FILLINGS).click()
-        time.sleep(1)
-        selected_fillings = driver.find_element(*TestLocators.TAB_FILLINGS_SELECTED_OR_NO_SELECTED).get_attribute("class")
+        selected_fillings = driver.find_element(*TestLocators.TAB_FILLINGS_SELECTED_OR_NO_SELECTED).get_attribute(
+            "class")
         assert 'tab_tab_type_current__2BEPc' in selected_fillings
-
-
