@@ -65,40 +65,38 @@ class TestSectionConstructor:
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
         driver.find_element(*TestLocators.TAB_FILLINGS).click()
         time.sleep(1)
-        no_selected_breads = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[1]").get_attribute('class')
-        assert no_selected_breads == "tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect", "Вкладка булки не доступна для клика"
+        no_selected_breads = driver.find_element(*TestLocators.TAB_BREADS_SELECTED_OR_NO_SELECTED).get_attribute(
+            'class')
+        assert 'tab_tab_type_current__2BEPc' not in no_selected_breads, "Вкладка булки не доступна для клика"
 
         driver.find_element(*TestLocators.TAB_BREADS).click()
         time.sleep(1)
-        selected_breads = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[1]"). \
-            get_attribute('class')
+        selected_breads = driver.find_element(*TestLocators.TAB_BREADS_SELECTED_OR_NO_SELECTED).get_attribute('class')
         time.sleep(1)
-        assert selected_breads == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
+        assert 'tab_tab_type_current__2BEPc' in selected_breads
 
     def test_go_section_sauces(self, driver):
-        WebDriverWait(driver, 3).until(
-            expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
-        no_selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[2]").get_attribute('class')
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
+        no_selected_sauces = driver.find_element(*TestLocators.TAB_SAUCES_SELECTED_OR_NO_SELECTED).get_attribute('class')
 
         time.sleep(1)
-        assert no_selected_sauces == "tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect"
+        assert 'tab_tab_type_current__2BEPc' not in no_selected_sauces
 
         driver.find_element(*TestLocators.TAB_SAUCES).click()
         time.sleep(1)
-        selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[2]").get_attribute("class")
-        assert selected_sauces == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
+        selected_sauces = driver.find_element(*TestLocators.TAB_SAUCES_SELECTED_OR_NO_SELECTED).get_attribute("class")
+        assert 'tab_tab_type_current__2BEPc' in selected_sauces
 
     def test_go_section_fillings(self, driver):
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((TestLocators.BUTTON_CONSTRUCTOR)))
-        no_selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[3]").get_attribute('class')
-
+        no_selected_fillings = driver.find_element(*TestLocators.TAB_FILLINGS_SELECTED_OR_NO_SELECTED).get_attribute('class')
         time.sleep(1)
-        assert no_selected_sauces == "tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect"
+        assert 'tab_tab_type_current__2BEPc' not in no_selected_fillings
 
         driver.find_element(*TestLocators.TAB_FILLINGS).click()
         time.sleep(1)
-        selected_sauces = driver.find_element(By.XPATH, ".//main/section[1]/div[1]/div[3]").get_attribute("class")
-        assert selected_sauces == "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"
+        selected_fillings = driver.find_element(*TestLocators.TAB_FILLINGS_SELECTED_OR_NO_SELECTED).get_attribute("class")
+        assert 'tab_tab_type_current__2BEPc' in selected_fillings
 
 

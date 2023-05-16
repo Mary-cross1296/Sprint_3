@@ -19,7 +19,7 @@ class TestRegistration:
         time.sleep(3)
 
         driver.find_element(*TestLocators.SIGN_REGISTER).click()
-        time.sleep(3)
+
 
         name = fake.name()
         email = fake.email()

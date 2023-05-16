@@ -12,8 +12,11 @@ class TestLocators:
     TITLE_COLLECT_BURGER = By.XPATH, ".//section/h1['Соберите бургер']" #Заголовок "Соберите бургер"
     LOGO_STELLAR_BURGER = By.XPATH, ".//header/nav/div/a" #Логотип Stellar Burger
     TAB_BREADS = By.XPATH, ".//div/span[text() = 'Булки']" #Вкладка "Булки"
+    TAB_BREADS_SELECTED_OR_NO_SELECTED = By.XPATH, ".//div/div/span[text() = 'Булки']/.." #Вкладка "Булки" выбрана/не выбрана
     TAB_SAUCES = By.XPATH, ".//div/span[text() = 'Соусы']" #Вкладка "Соусы"
+    TAB_SAUCES_SELECTED_OR_NO_SELECTED = By.XPATH, ".//div/div/span[text() = 'Соусы']/.." #Вкладка "Соусы" выбрана/не выбрана
     TAB_FILLINGS = By.XPATH, ".//div/span[text() = 'Начинки']" #Вкладка "Начинки"
+    TAB_FILLINGS_SELECTED_OR_NO_SELECTED = By.XPATH, ".//div/div/span[text() = 'Начинки']/.." #Вкладка "Начинки" выбрана/не выбрана
 
     #Регистрация
     SIGN_LOG_IN = By.XPATH, ".//p/a[text()='Войти']" #Надпись "Войти"
