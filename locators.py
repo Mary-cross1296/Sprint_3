@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+
 class TestLocators:
     #Главная страница
     BUTTON_PERSONAL_ACCOUNT = By.XPATH, ".//nav/a/p[text()='Личный Кабинет']" #Кнопка личный кабинет на главной странице

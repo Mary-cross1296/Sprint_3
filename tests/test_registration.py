@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators import TestLocators
 
+
 class TestRegistration:
     def test_registration_new_user(self, driver, fake):
         WebDriverWait(driver, 3).until(

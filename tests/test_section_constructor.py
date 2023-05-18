@@ -2,6 +2,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators import TestLocators
 
+
 class TestSectionConstructor:
     def test_clicking_on_constructor_from_order_feed(self, driver):
         driver.find_element(*TestLocators.BUTTON_ORDER_TAPE).click()
